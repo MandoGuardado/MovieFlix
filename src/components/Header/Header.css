@@ -7,12 +7,16 @@
 }
 
 .btn {
-  background-color: white;
-  padding: 1.5em;
+  background-color: aliceblue;
+  padding: 1em;
   border-radius: 20px;
   border: none;
   box-shadow: 1px 3px 2px rgba(0, 0, 0, 0.21);
   font-size: 1.2em;
+  color: #212353;
+}
+.logo {
+  display: flex;
 }
 
 .logo h1 {

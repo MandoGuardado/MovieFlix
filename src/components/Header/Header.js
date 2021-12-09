@@ -1,5 +1,6 @@
 import React from "react";
 import "./Header.css";
+import logo from "../../icons/logo.svg";
 
 function Header(props) {
   const handleClick = () => {
@@ -9,7 +10,8 @@ function Header(props) {
   return (
     <div className='container'>
       <div className='logo'>
-        <h1> MovieFlix </h1>
+        <img src={logo} alt='Movie icon' />
+        <h1>MovieFlix </h1>
       </div>
       <div>
         <button onClick={handleClick} className='btn'>
