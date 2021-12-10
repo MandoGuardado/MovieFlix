@@ -7,8 +7,9 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import SignUp from "./components/Form/SignUp";
 import SignIn from "./components/Form/SignIn";
 import MainDisplay from "./components/MainDisplay/MainDisplay";
-import questionsData from "./components/Questions/Questions";
+import Questions from "./components/Questions/Questions";
 import Dashboard from "./components/Dashboard/Dashboard";
+
 const App = () => {
   const navigate = useNavigate();
 
@@ -25,7 +26,7 @@ const App = () => {
     <div className='main-container'>
       <Header />
       <Routes>
-        <Route exact path='/' element={<MainDisplay />} />
+        <Route exact path='/' element={<><MainDisplay /><Questions/></>} />
         <Route exact path='/signup' element={<SignUp />} />
         <Route exact path='/signin' element={<SignIn />} />
         <Route exact path='/dashboard' element={<Dashboard />} />
