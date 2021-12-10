@@ -18,7 +18,6 @@ function MainDisplay(props){
                 <h1>Great movies, TV Shows, and more!</h1>
                 <h4>Watch anywhere. For Free</h4>
                 <Image alt="MovieFlixlogo" className="MovieFlix" src= {MovieFlixlogo} fluid />
-        
             </div>
             <div>
             <button onClick={handleClick} className='sign-up'>
