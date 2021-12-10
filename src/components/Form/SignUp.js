@@ -1,18 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
+  onAuthStateChanged,
 } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import "./Form.css";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
     password: "",
     name: "",
     avatar: "",
   });
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
+      if (user) return navigate("/dashboard");
+
+      // Can use user info here if needed.
+    });
+
+    return unsubscribe;
+  }, []);
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -45,28 +58,28 @@ const SignUp = () => {
         <input
           type='text'
           name='email'
-          id=''
+          value={user.email}
           placeholder='Email'
           onChange={handleChange}
         />
         <input
           type='password'
           name='password'
-          id=''
+          value={user.password}
           placeholder='Password'
           onChange={handleChange}
         />
         <input
           type='text'
           name='name'
-          id=''
+          value={user.name}
           placeholder='Name'
           onChange={handleChange}
         />
         <input
           type='text'
           name='avatar'
-          id=''
+          value={user.avatar}
           placeholder='Profile Photo URL'
           onChange={handleChange}
         />

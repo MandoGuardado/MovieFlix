@@ -10,3 +10,14 @@ body {
 button:hover {
   opacity: 0.5;
 }
+
+a,
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+li {
+  list-style-type: none;
+}
