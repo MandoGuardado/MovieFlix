@@ -7,7 +7,6 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import SignUp from "./components/Form/SignUp";
 import SignIn from "./components/Form/SignIn";
 import MaindDisplay from "./components/MainDisplay/MainDisplay";
-import MainDisplay from "./components/MainDisplay/MainDisplay.js";
 import questionsData from "./components/Questions/Questions";
 
 function App() {
