@@ -6,11 +6,11 @@ import { Routes, Route, Link, Navigate, useNavigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import SignUp from "./components/Form/SignUp";
 import SignIn from "./components/Form/SignIn";
+import MainDisplay from "./components/MainDisplay/MainDisplay";
 import Dashboard from "./components/Dashboard/Dashboard";
-import { useState } from "react/cjs/react.development";
-
 const App = () => {
   const navigate = useNavigate();
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
@@ -23,10 +23,13 @@ const App = () => {
 
   return (
     <div className='main-container'>
+
       <Header />
+    <MainDisplay/>
       <Routes>
         <Route exact path='/signup' element={<SignUp />} />
         <Route exact path='/signin' element={<SignIn />} />
+       
         <Route exact path='/dashboard' element={<Dashboard />} />
         {/* <Route path='*' element={<h1>NOT FOUND</h1>} /> */}
       </Routes>
