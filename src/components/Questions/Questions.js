@@ -40,7 +40,7 @@ function questionsData() {
                         <CustomToggle eventKey="1">+</CustomToggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="1">
-                        <Card.Body>New members will start off with a 7 day free trial and then it will be as little as $5.99 each month!</Card.Body>
+                        <Card.Body>New members will start off with a 7 day free trial and then it will be as little as $5.99 each month! Sign up!</Card.Body>
                     </Accordion.Collapse>
                 </Card>
                 <Card>
