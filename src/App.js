@@ -7,9 +7,11 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import SignUp from "./components/Form/SignUp";
 import SignIn from "./components/Form/SignIn";
 import MainDisplay from "./components/MainDisplay/MainDisplay";
+import questionsData from "./components/Questions/Questions";
 import Dashboard from "./components/Dashboard/Dashboard";
 const App = () => {
   const navigate = useNavigate();
+
 
 
   useEffect(() => {
@@ -23,6 +25,16 @@ const App = () => {
 
   return (
     <div className='main-container'>
+
+      <Router>
+        <Header />
+        <MainDisplay/>
+        <Routes>
+          <Route exact path='/signup' element={<SignUp />} />
+          <Route exact path='/signin' element={<SignIn />} />
+        </Routes>
+      </Router>
+
 
       <Header />
     <MainDisplay/>
