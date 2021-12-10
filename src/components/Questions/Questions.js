@@ -3,24 +3,10 @@ import "./Questions.css"
 import Accordion from 'react-bootstrap/Accordion'
 import { Card, useAccordionButton } from "react-bootstrap";
 
-// function CustomToggle({ children, eventKey }) {
-//     const decoratedOnClick = useAccordionButton(eventKey, () =>
-//         console.log('Its clicked!'),
-//     );
-
-//     return (
-//         <button
-//             type="button"
-//             style={{ backgroundColor: 'purple' }}
-//             onClick={decoratedOnClick}
-//         >
-//             {children}
-//         </button>
-//     );
-// }
 
 function Questions() {
     return (
+
         <Accordion defaultActiveKey="0" flush>
         <Accordion.Item eventKey="0">
           <Accordion.Header>Accordion Item #1</Accordion.Header>
@@ -49,6 +35,7 @@ function Questions() {
       </Accordion>     
            
     )     
+
 }
 
 export default Questions;
