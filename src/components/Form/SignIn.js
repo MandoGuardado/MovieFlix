@@ -1,13 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
 import "./Form.css";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
+      if (user) return navigate("/dashboard");
+
+      // Can use user info here if needed.
+    });
+
+    return unsubscribe;
+  }, []);
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -32,14 +47,14 @@ const SignIn = () => {
         <input
           type='text'
           name='email'
-          id=''
+          value={user.email}
           placeholder='Email'
           onChange={handleChange}
         />
         <input
           type='password'
           name='password'
-          id=''
+          value={user.password}
           placeholder='Password'
           onChange={handleChange}
         />
