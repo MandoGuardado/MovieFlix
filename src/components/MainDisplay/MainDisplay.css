@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 .display-container{
     font-weight: 700;
     color: #3f3d56;
+=======
+.container {
+  font-weight: 700;
+  color: #3f3d56;
+>>>>>>> e9007746a7570b60f07697ba2370a4281c864f44
 }
 
-.sign-up{
+
+.sign-up {
   background-color: rgb(175, 71, 245);
   padding: 1em;
   border-radius: 20px;
@@ -15,6 +22,7 @@
  
 }
 
+<<<<<<< HEAD
 .display-container{
     font-weight: 700;
     color: #3f3d56;
@@ -39,3 +47,36 @@
   font-size: 3em;
   font-weight: bold;
 }
+=======
+.display {
+  font-weight: 700;
+  color: #3f3d56;
+}
+ .MovieFlix{
+    height: 27rem;
+    max-width: 50rem;
+    border-radius: 8px;
+    margin-top: 300px;
+    margin-right: 100px;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    right: 0;
+} 
+.display h1{
+    text-align: left;
+    inline-size: 350px;
+    overflow-wrap: break-word;
+    position: relative;
+    top: 250px;
+    left: 100px;
+    
+}
+.display h4{
+    text-align: right;
+    inline-size: 350px;
+    position: relative;
+    top: 250px;
+    left: -30px;
+}
+>>>>>>> e9007746a7570b60f07697ba2370a4281c864f44

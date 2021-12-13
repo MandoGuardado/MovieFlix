@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import { SwiperSlide } from "swiper/react";
+import Modal from "../Modal/Modal";
+import "swiper/swiper-bundle.css";
 
-const Card = () => {
+import "./Card.css";
+import "../CardList/CardList.css";
+
+const Card = ({ info }) => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
-    <li>
-      <img
-        src='https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-        alt='card'
-      />
-    </li>
+    <>
+      <Modal data={info} show={showModal} onHide={() => setShowModal(false)} />
+
+      <SwiperSlide id='mySlide'>
+        <img
+          onClick={() => setShowModal(true)}
+          src={info.poster_path}
+          alt='card'
+        />
+      </SwiperSlide>
+    </>
   );
 };
 

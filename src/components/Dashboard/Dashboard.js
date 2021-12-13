@@ -3,85 +3,75 @@ import "./Dashboard.css";
 import axios from "axios";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import CardList from "../CardList/CardList";
+import SwiperDemo from "../Swiper/Swiper";
+import YouTube from "react-youtube";
 
 import Modal from "../Modal/Modal";
+import { Button } from "react-bootstrap";
 
 const Dashboard = () => {
   const auth = getAuth();
   const navigate = useNavigate();
-  const [data, setData] = useState({});
-  const [showModal, setShowModal] = useState(false);
+  const [cardList, setCardList] = useState([]);
+  const [featured, setFeatured] = useState();
 
   useEffect(() => {
     if (!auth.currentUser) return navigate("/");
 
-    const getData = async () => {
-      const result = await axios.get("http://localhost:8000/testing_backend");
-      console.log(result.data);
-      setData(result.data);
-    };
-    getData();
+    Promise.all([
+
+      axios.get("http://localhost:8000/trending"),
+      axios.get("http://localhost:8000/movies/popular"),
+      axios.get("http://localhost:8000/tv/popular"),
+      axios.get("http://localhost:8000/movies/upcoming"),
+
+    ]).then((results) => {
+      console.log(results);
+      setCardList(results);
+    });
   }, []);
 
+  // useEffect(() => {
+  //   const fetchFeatured = async () => {
+  //     const result = await axios.get("http://localhost:8000/latest");
+  //     console.log(result.data);
+  //     setFeatured(result.data);
+  //   };
+  //   fetchFeatured();
+  // }, []);
+  useEffect(() => {
+    const randomMovie = () => {
+      let index = Math.floor(Math.random() * (20 - 0) + 1);
+      console.log(index);
+      setFeatured(cardList[0]?.data[index]);
+    };
+    randomMovie();
+  }, [cardList]);
   return (
     <>
-      <Modal show={showModal} onHide={() => setShowModal(false)} />
       <div className='dashboard-body'>
-        <h2>Trending Now</h2>
-        <ul className='video-list'>
-          <li>
-            <img
-              onClick={() => setShowModal(true)}
-              src='https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-              alt='card'
-            />
-          </li>
-          <li>
-            <img
-              src='https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-              alt='card'
-            />
-          </li>
-          <li>
-            <img
-              src='https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-              alt='card'
-            />
-          </li>
-          <li>
-            <img
-              src='https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-              alt='card'
-            />
-          </li>
-        </ul>
-        <h2>Category</h2>
-        <ul className='video-list'>
-          <li>
-            <img
-              src='https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-              alt='card'
-            />
-          </li>
-          <li>
-            <img
-              src='https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-              alt='card'
-            />
-          </li>
-          <li>
-            <img
-              src='https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-              alt='card'
-            />
-          </li>
-          <li>
-            <img
-              src='https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-              alt='card'
-            />
-          </li>
-        </ul>
+
+        <div
+          className='featured'
+          style={{
+            background: `linear-gradient(135deg, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0) 70%), url(${featured?.backdrop_path}) center no-repeat`,
+            backgroundSize: "cover",
+          }}
+        >
+          <div className='featured-content'>
+            <h2>{featured?.title || featured?.name}</h2>
+            <p>{featured?.overview}</p>
+            <Button text='Play' action='/play' />
+          </div>
+        </div>
+        {cardList.map((list, index) => (
+          <CardList
+            key={index}
+            data={list.data.results}
+            category={list.data.category}
+          />
+        ))}
       </div>
     </>
   );
