@@ -1,9 +1,10 @@
-.container{
-    font-weight: 700;
-    color: #3f3d56;
+.container {
+  font-weight: 700;
+  color: #3f3d56;
 }
 
-.sign-up{
+
+.sign-up {
   background-color: rgb(175, 71, 245);
   padding: 1em;
   border-radius: 20px;
@@ -19,8 +20,8 @@
   top: -275px;
 }
 
-.display{
-    font-weight: 700;
+.display {
+  font-weight: 700;
   color: #3f3d56;
 }
  .MovieFlix{

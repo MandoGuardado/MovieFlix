@@ -20,7 +20,7 @@ function Header(props) {
   }, []);
 
   return (
-    <div className='container'>
+    <div className='header-container'>
       <div className='logo'>
         <img src={logo} alt='Movie icon' />
         <h1>MovieFlix </h1>
