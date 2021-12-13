@@ -18,9 +18,9 @@ const CardList = (props) => {
         navigation
         slidesPerGroup={6}
       >
-        <div class='swiper-wrapper card-list'>
-          {props.data.map((card) => (
-            <Card className='' id='mySlide' info={card} />
+        <div className='swiper-wrapper card-list'>
+          {props.data.map((card, index) => (
+            <Card key={index} className='' id='mySlide' info={card} />
           ))}
         </div>
       </Swiper>

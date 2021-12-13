@@ -20,10 +20,12 @@ const Dashboard = () => {
     if (!auth.currentUser) return navigate("/");
 
     Promise.all([
+
       axios.get("http://localhost:8000/trending"),
       axios.get("http://localhost:8000/movies/popular"),
       axios.get("http://localhost:8000/tv/popular"),
       axios.get("http://localhost:8000/movies/upcoming"),
+
     ]).then((results) => {
       console.log(results);
       results[0].data.cat = "Trending";
@@ -72,6 +74,7 @@ const Dashboard = () => {
             data={list.data}
             category={list.data.cat}
           />
+
         ))}
       </div>
     </>
