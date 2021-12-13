@@ -25,6 +25,8 @@ const Dashboard = () => {
       axios.get("http://localhost:8000/movies/popular"),
       axios.get("http://localhost:8000/tv/popular"),
       axios.get("http://localhost:8000/movies/upcoming"),
+      axios.get("http://localhost:8000/tv/on-the-air"),
+      axios.get("http://localhost:8000/movies/now-playing"),
 
     ]).then((results) => {
       console.log(results);

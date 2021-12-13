@@ -8,33 +8,35 @@ import SwiperDemo from "../Swiper/Swiper";
 import Modal from "../Modal/Modal";
 
 const Movies = () => {
-  const auth = getAuth();
-  const navigate = useNavigate();
-  const [data, setData] = useState([]);
-  const [cardList, setCardList] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+    const auth = getAuth();
+    const navigate = useNavigate();
+    const [data, setData] = useState([]);
+    const [cardList, setCardList] = useState([]);
+    const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
-    if (!auth.currentUser) return navigate("/");
+    useEffect(() => {
+        if (!auth.currentUser) return navigate("/");
 
-    Promise.all([
-      axios.get("http://localhost:8000/movies/popular"),
-      axios.get("http://localhost:8000/movies/upcoming"),
-    ]).then((results) => {
-      console.log(results);
-      setCardList(results);
-    });
-  }, []);
+        Promise.all([
+            axios.get("http://localhost:8000/movies/now-playing"),
+            axios.get("http://localhost:8000/movies/popular"),
+            axios.get("http://localhost:8000/movies/upcoming"),
 
-  return (
-    <>
-      <div className='dashboard-body'>
-        {cardList.map((list, index) => (
-          <CardList key={index} data={list.data.results} category={list.data.category}/>
-        ))}
-      </div>
-    </>
-  );
+        ]).then((results) => {
+            console.log(results);
+            setCardList(results);
+        });
+    }, []);
+
+    return (
+        <>
+            <div className='dashboard-body'>
+                {cardList.map((list, index) => (
+                    <CardList key={index} data={list.data.results} category={list.data.category} />
+                ))}
+            </div>
+        </>
+    );
 };
 
 export default Movies;
