@@ -3,31 +3,46 @@ import "./Dashboard.css";
 import axios from "axios";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import CardList from "../CardList/CardList";
+import SwiperDemo from "../Swiper/Swiper";
 
 import Modal from "../Modal/Modal";
 
 const Dashboard = () => {
   const auth = getAuth();
   const navigate = useNavigate();
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
+  const [cardList, setCardList] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (!auth.currentUser) return navigate("/");
 
-    const getData = async () => {
-      const result = await axios.get("http://localhost:8000/testing_backend");
-      console.log(result.data);
-      setData(result.data);
-    };
-    getData();
+    // const getData = async () => {
+    //   const result = await axios.get("http://localhost:8000/upcoming-movies");
+    //   console.log(result.data);
+    //   setData(result.data);
+    // };
+
+    Promise.all([
+      axios.get("http://localhost:8000/upcoming-movies"),
+      axios.get("http://localhost:8000/trending"),
+    ]).then((results) => {
+      console.log(results);
+      setCardList(results);
+    });
+    // getData();
   }, []);
 
   return (
     <>
-      <Modal show={showModal} onHide={() => setShowModal(false)} />
       <div className='dashboard-body'>
-        <h2>Trending Now</h2>
+        {cardList.map((list) => (
+          <CardList data={list.data} category='Trending' />
+        ))}
+        {/* <CardList data={data} category='Upcoming Movies' /> */}
+
+        {/* <h2>Trending Now</h2>
         <ul className='video-list'>
           <li>
             <img
@@ -81,7 +96,7 @@ const Dashboard = () => {
               alt='card'
             />
           </li>
-        </ul>
+        </ul> */}
       </div>
     </>
   );
