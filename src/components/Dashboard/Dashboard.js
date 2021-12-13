@@ -8,7 +8,7 @@ import SwiperDemo from "../Swiper/Swiper";
 import YouTube from "react-youtube";
 
 import Modal from "../Modal/Modal";
-import { Button } from "react-bootstrap";
+import Button from "../Button/Button";
 
 const Dashboard = () => {
   const auth = getAuth();
@@ -20,12 +20,10 @@ const Dashboard = () => {
     if (!auth.currentUser) return navigate("/");
 
     Promise.all([
-
       axios.get("http://localhost:8000/trending"),
       axios.get("http://localhost:8000/movies/popular"),
       axios.get("http://localhost:8000/tv/popular"),
       axios.get("http://localhost:8000/movies/upcoming"),
-
     ]).then((results) => {
       console.log(results);
       results[0].data.cat = "Trending";
@@ -36,14 +34,6 @@ const Dashboard = () => {
     });
   }, []);
 
-  // useEffect(() => {
-  //   const fetchFeatured = async () => {
-  //     const result = await axios.get("http://localhost:8000/latest");
-  //     console.log(result.data);
-  //     setFeatured(result.data);
-  //   };
-  //   fetchFeatured();
-  // }, []);
   useEffect(() => {
     const randomMovie = () => {
       let index = Math.floor(Math.random() * (20 - 0) + 1);
@@ -74,7 +64,6 @@ const Dashboard = () => {
             data={list.data}
             category={list.data.cat}
           />
-
         ))}
       </div>
     </>
