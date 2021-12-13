@@ -28,10 +28,6 @@ const Dashboard = () => {
 
     ]).then((results) => {
       console.log(results);
-      results[0].data.cat = "Trending";
-      results[1].data.cat = "Popular Movies";
-      results[2].data.cat = "Popular TV";
-      results[3].data.cat = "Upcoming";
       setCardList(results);
     });
   }, []);
@@ -55,6 +51,7 @@ const Dashboard = () => {
   return (
     <>
       <div className='dashboard-body'>
+
         <div
           className='featured'
           style={{
@@ -68,13 +65,12 @@ const Dashboard = () => {
             <Button text='Play' action='/play' />
           </div>
         </div>
-        {cardList.map((list) => (
+        {cardList.map((list, index) => (
           <CardList
-            key={list.data.cat}
-            data={list.data}
-            category={list.data.cat}
+            key={index}
+            data={list.data.results}
+            category={list.data.category}
           />
-
         ))}
       </div>
     </>

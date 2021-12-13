@@ -9,6 +9,8 @@ import SignIn from "./components/Form/SignIn";
 import MainDisplay from "./components/MainDisplay/MainDisplay";
 import Questions from "./components/Questions/Questions";
 import Dashboard from "./components/Dashboard/Dashboard";
+import TvShows from "./components/TvShows/TvShows.js";
+import Movies from "./components/Movies/Movies.js"
 
 const App = () => {
   const navigate = useNavigate();
@@ -38,6 +40,9 @@ const App = () => {
         <Route exact path='/signup' element={<SignUp />} />
         <Route exact path='/signin' element={<SignIn />} />
         <Route exact path='/dashboard' element={<Dashboard />} />
+        <Route exact path='/tvshows' element={<TvShows />} />
+        <Route exact path='/movies' element={<Movies/>} />
+        
         {/* <Route path='*' element={<h1>NOT FOUND</h1>} /> */}
       </Routes>
     </div>
