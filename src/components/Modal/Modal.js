@@ -1,7 +1,8 @@
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
-
+import { Modal, Button, Row, Col } from "react-bootstrap";
+import YouTubeVideo from "../YouTube/YouTubeVideo"
 const CardModal = (props) => {
+  const { videos: { results } } = props.data
   const { data } = props;
   return (
     <Modal
@@ -18,6 +19,18 @@ const CardModal = (props) => {
       <Modal.Body>
         <h4>Synopsis</h4>
         <p>{data.overview}</p>
+        <container>
+          <Row>
+            <Col xs={1}></Col>
+            <Col xs={10} >
+              <div className="you-tube-video">
+                {results.length > 0 && <YouTubeVideo id={results[0].key} />}
+              </div>
+            </Col>
+            <Col xs={1}></Col>
+          </Row>
+        </container>
+
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
