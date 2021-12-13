@@ -12,7 +12,6 @@ function MainDisplay(props) {
     console.log(props);
   };
 
-<<<<<<< HEAD
     return(
         <>
        
@@ -35,36 +34,3 @@ function MainDisplay(props) {
     );
 };
 export default MainDisplay;
-=======
-
-  return (
-    <>
-      <div className='container'>
-        <div className='display'>
-          <h1>Great movies, TV Shows, and more!</h1>
-          <h4>Watch anywhere. For Free</h4>
-          <Image alt="MovieFlixlogo" className="MovieFlix" src={MovieFlixlogo} fluid />
-        </div>
-        <div>
-          <button onClick={handleClick} className='sign-up'>
-            Sign up!
-          </button>
-
-        </div>
-        <div>
-          <button onClick={handleClick} className='sign-up'>
-            Sign up!
-          </button>
-        </div>
-        {/* <div>
-          <button onClick={handleClick} className='sign-in btn'>
-            Sign up!
-          </button>
-        </div> */}
-      </div>
-      {/* <Questions /> */}
-    </>
-  );
-}
-export default MainDisplay;
->>>>>>> e9007746a7570b60f07697ba2370a4281c864f44

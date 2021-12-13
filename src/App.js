@@ -9,15 +9,12 @@ import SignIn from "./components/Form/SignIn";
 import MainDisplay from "./components/MainDisplay/MainDisplay";
 import Questions from "./components/Questions/Questions";
 import Dashboard from "./components/Dashboard/Dashboard";
-<<<<<<< HEAD
 import FooterPage from "./components/Footer";
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
 import'bootstrap-css-only/css/bootstrap.min.css'; 
 import'mdbreact/dist/css/mdb.css';
-=======
 import TvShows from "./components/TvShows/TvShows.js";
 import Movies from "./components/Movies/Movies.js"
->>>>>>> e9007746a7570b60f07697ba2370a4281c864f44
 
 const App = () => {
   const navigate = useNavigate();
@@ -35,9 +32,7 @@ const App = () => {
     <div className='main-container'>
       <Header />
 
-     <MainDisplay/>
-     <Questions/>
-     <FooterPage/>
+    
 
       <Routes>
         <Route
@@ -45,7 +40,10 @@ const App = () => {
           path='/'
           element={
             <>
-              <MainDisplay />
+             <MainDisplay/>
+     <Questions/>
+     <FooterPage/>
+              
             </>
           }
         />
