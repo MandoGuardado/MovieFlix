@@ -14,6 +14,7 @@ function Header(props) {
       if (user) return setIsUserLoggedIn(true);
 
       setIsUserLoggedIn(false);
+
     });
 
     return unsubscribe;

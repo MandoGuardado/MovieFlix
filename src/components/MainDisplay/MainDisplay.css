@@ -1,6 +1,6 @@
-.container {
-  font-weight: 700;
-  color: #3f3d56;
+.display-container{
+    font-weight: 700;
+    color: #3f3d56;
 }
 
 
@@ -12,42 +12,31 @@
   box-shadow: 1px 3px 2px rgba(0, 0, 0, 0.21);
   font-size: 1.2em;
   color: #c8c9d6;
-  margin-top: 900px;
-  margin-bottom: 100px;
-  margin-left: 100px;
-  position: fixed;
-  left: 50px;
-  top: -275px;
+  margin-top: 20px;
+ 
 }
 
-.display {
-  font-weight: 700;
-  color: #3f3d56;
-}
- .MovieFlix{
-    height: 27rem;
-    max-width: 50rem;
-    border-radius: 8px;
-    margin-top: 300px;
-    margin-right: 100px;
-    background-color: black;
-    position: absolute;
-    top: 0;
-    right: 0;
-} 
-.display h1{
-    text-align: left;
-    inline-size: 350px;
-    overflow-wrap: break-word;
-    position: relative;
-    top: 250px;
-    left: 100px;
+.display-container{
+    font-weight: 700;
+    color: #3f3d56;
+    display: flex;
+   
+
     
 }
-.display h4{
-    text-align: right;
-    inline-size: 350px;
-    position: relative;
-    top: 250px;
-    left: -30px;
+.Movielogo{
+  width: 700px;
+ 
+}
+.display{
+  height: 80vh;
+  display: flex;
+  align-items:center;
+  padding:15px;
+  
+}
+.display-left h1{
+  margin-bottom:30px;
+  font-size: 3em;
+  font-weight: bold;
 }

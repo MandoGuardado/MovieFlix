@@ -1,0 +1,15 @@
+.firsttitle{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.secondtitle{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-left: 200px;
+}
+.social-media{
+    text-align: center
+}
