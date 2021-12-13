@@ -18,8 +18,8 @@ const TvShows = () => {
     if (!auth.currentUser) return navigate("/");
 
     Promise.all([
-      axios.get("http://localhost:5000/tv/popular"),
-      axios.get("http://localhost:5000/tv/top-rated"),
+      axios.get("http://localhost:8000/tv/popular"),
+      axios.get("http://localhost:8000/tv/top-rated"),
     ]).then((results) => {
       console.log(results);
       setCardList(results);

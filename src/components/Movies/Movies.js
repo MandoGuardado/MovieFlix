@@ -18,8 +18,8 @@ const Movies = () => {
     if (!auth.currentUser) return navigate("/");
 
     Promise.all([
-      axios.get("http://localhost:5000/movies/popular"),
-      axios.get("http://localhost:5000/movies/upcoming"),
+      axios.get("http://localhost:8000/movies/popular"),
+      axios.get("http://localhost:8000/movies/upcoming"),
     ]).then((results) => {
       console.log(results);
       setCardList(results);
