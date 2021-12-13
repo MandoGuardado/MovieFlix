@@ -10,10 +10,10 @@ import "./Swiper.css";
 // import "./styles.css";
 import "swiper/swiper-bundle.css";
 // import Swiper core and required modules
-import SwiperCore, { Pagination } from "swiper";
+import SwiperCore, { Navigation } from "swiper";
 
 // install Swiper modules
-SwiperCore.use([Pagination]);
+SwiperCore.use([Navigation]);
 
 export default function SwiperDemo() {
   return (
@@ -21,9 +21,10 @@ export default function SwiperDemo() {
       <Swiper
         slidesPerView={3}
         spaceBetween={30}
-        pagination={{
-          clickable: true,
-        }}
+        navigation
+        // pagination={{
+        //   clickable: true,
+        // }}
         className='mySwiper'
       >
         <SwiperSlide>Slide 1</SwiperSlide>

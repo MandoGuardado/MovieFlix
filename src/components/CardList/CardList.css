@@ -7,6 +7,7 @@
 .card-list {
   padding: 20px;
 }
+
 .video-list #mySlide {
   transition: transform 300ms ease 100ms;
   transition-delay: 200ms;
