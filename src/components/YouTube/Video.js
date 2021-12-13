@@ -1,7 +1,7 @@
 import React from "react";
 import YouTube from "react-youtube";
 
-const VideoComponent = ({ youTubeKey }) => {
+const VideoComponent = ({key}) => {
   const opts = {
     height: "500",
     width: "640",
@@ -17,7 +17,7 @@ const VideoComponent = ({ youTubeKey }) => {
 
   return (
     <div className="video-component">
-      <YouTube videoId={youTubeKey} opts={opts} />
+      <YouTube videoId={key} opts={opts} />
     </div>
   );
 };
