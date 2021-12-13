@@ -1,14 +1,14 @@
 import React from "react";
 import YouTube from "react-youtube";
 
-const VideoComponent = ({key}) => {
+const YouTubeVideo = ({id:key}) => {
   const opts = {
     height: "500",
     width: "640",
     // https://developers.google.com/youtube/player_parameters
     //Values we can adjust to change how our videos displays
     playerVars: {
-      autoplay: 1,
+      autoplay: 0,
       controls: 1,
       fs: 1,
       modestbranding: 0
@@ -22,4 +22,4 @@ const VideoComponent = ({key}) => {
   );
 };
 
-export default VideoComponent;
+export default YouTubeVideo;
