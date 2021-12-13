@@ -5,98 +5,77 @@ import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import CardList from "../CardList/CardList";
 import SwiperDemo from "../Swiper/Swiper";
+import YouTube from "react-youtube";
 
 import Modal from "../Modal/Modal";
+import { Button } from "react-bootstrap";
 
 const Dashboard = () => {
   const auth = getAuth();
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
   const [cardList, setCardList] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  const [featured, setFeatured] = useState();
 
   useEffect(() => {
     if (!auth.currentUser) return navigate("/");
 
-    // const getData = async () => {
-    //   const result = await axios.get("http://localhost:8000/upcoming-movies");
-    //   console.log(result.data);
-    //   setData(result.data);
-    // };
-
     Promise.all([
-      axios.get("http://localhost:5000/movies/upcoming"),
-      axios.get("http://localhost:5000/trending"),
+
+      axios.get("http://localhost:8000/trending"),
+      axios.get("http://localhost:8000/movies/popular"),
+      axios.get("http://localhost:8000/tv/popular"),
+      axios.get("http://localhost:8000/movies/upcoming"),
+
     ]).then((results) => {
       console.log(results);
+      results[0].data.cat = "Trending";
+      results[1].data.cat = "Popular Movies";
+      results[2].data.cat = "Popular TV";
+      results[3].data.cat = "Upcoming";
       setCardList(results);
     });
-    // getData();
   }, []);
 
+  // useEffect(() => {
+  //   const fetchFeatured = async () => {
+  //     const result = await axios.get("http://localhost:8000/latest");
+  //     console.log(result.data);
+  //     setFeatured(result.data);
+  //   };
+  //   fetchFeatured();
+  // }, []);
+  useEffect(() => {
+    const randomMovie = () => {
+      let index = Math.floor(Math.random() * (20 - 0) + 1);
+      console.log(index);
+      setFeatured(cardList[0]?.data[index]);
+    };
+    randomMovie();
+  }, [cardList]);
   return (
     <>
       <div className='dashboard-body'>
-        {cardList.map((list, index) => (
-          <CardList key={index} data={list.data} category='Trending' />
-        ))}
-        {/* <CardList data={data} category='Upcoming Movies' /> */}
+        <div
+          className='featured'
+          style={{
+            background: `linear-gradient(135deg, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0) 70%), url(${featured?.backdrop_path}) center no-repeat`,
+            backgroundSize: "cover",
+          }}
+        >
+          <div className='featured-content'>
+            <h2>{featured?.title || featured?.name}</h2>
+            <p>{featured?.overview}</p>
+            <Button text='Play' action='/play' />
+          </div>
+        </div>
+        {cardList.map((list) => (
+          <CardList
+            key={list.data.cat}
+            data={list.data}
+            category={list.data.cat}
+          />
 
-        {/* <h2>Trending Now</h2>
-        <ul className='video-list'>
-          <li>
-            <img
-              onClick={() => setShowModal(true)}
-              src='https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-              alt='card'
-            />
-          </li>
-          <li>
-            <img
-              src='https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-              alt='card'
-            />
-          </li>
-          <li>
-            <img
-              src='https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-              alt='card'
-            />
-          </li>
-          <li>
-            <img
-              src='https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-              alt='card'
-            />
-          </li>
-        </ul>
-        <h2>Category</h2>
-        <ul className='video-list'>
-          <li>
-            <img
-              src='https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-              alt='card'
-            />
-          </li>
-          <li>
-            <img
-              src='https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-              alt='card'
-            />
-          </li>
-          <li>
-            <img
-              src='https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-              alt='card'
-            />
-          </li>
-          <li>
-            <img
-              src='https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-              alt='card'
-            />
-          </li>
-        </ul> */}
+        ))}
       </div>
     </>
   );
