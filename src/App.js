@@ -9,6 +9,10 @@ import SignIn from "./components/Form/SignIn";
 import MainDisplay from "./components/MainDisplay/MainDisplay";
 import Questions from "./components/Questions/Questions";
 import Dashboard from "./components/Dashboard/Dashboard";
+import FooterPage from "./components/Footer";
+import '@fortawesome/fontawesome-free/css/all.min.css'; 
+import'bootstrap-css-only/css/bootstrap.min.css'; 
+import'mdbreact/dist/css/mdb.css';
 
 const App = () => {
   const navigate = useNavigate();
@@ -30,6 +34,7 @@ const App = () => {
       <Header />
      <MainDisplay/>
      <Questions/>
+     <FooterPage/>
       <Routes>
         <Route exact path='/signup' element={<SignUp />} />
         <Route exact path='/signin' element={<SignIn />} />

@@ -1,0 +1,12 @@
+
+.accordion{
+   
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+.accordion-item{
+    max-width: 70%;
+    align-self: center;
+    min-width: 50%;
+}

@@ -13,18 +13,22 @@ function MainDisplay(props){
 
     return(
         <>
-        <div className= 'container'>
+       
             <div className='display'>
+                <div className='display-left'>
                 <h1>Great movies, TV Shows, and more!</h1>
                 <h4>Watch anywhere. For Free</h4>
+                <button onClick={handleClick} className='sign-up'>
+                  Sign up!
+                </button>   
+                </div>
+                <div className='Movielogo'>
                 <Image alt="MovieFlixlogo" className="MovieFlix" src= {MovieFlixlogo} fluid />
+                </div> 
             </div>
-            <div>
-            <button onClick={handleClick} className='sign-up'>
-            Sign up!
-            </button>       
+            <div>  
         </div>
-        </div>
+        
         </>
     );
 };
