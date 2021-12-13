@@ -44,7 +44,7 @@ const Dashboard = () => {
     const randomMovie = () => {
       let index = Math.floor(Math.random() * (20 - 0) + 1);
       console.log(index);
-      setFeatured(cardList[0]?.data[index]);
+      setFeatured(cardList[0]?.data.results[index]);
     };
     randomMovie();
   }, [cardList]);
