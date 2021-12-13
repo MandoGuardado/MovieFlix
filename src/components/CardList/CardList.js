@@ -19,9 +19,9 @@ const CardList = (props) => {
         slidesPerView={7}
         spaceBetween={10}
       >
-        <div class='swiper-wrapper card-list'>
-          {props.data.map((card) => (
-            <Card className='' id='mySlide' info={card} />
+        <div className='swiper-wrapper card-list'>
+          {props.data.map((card, index) => (
+            <Card key={index} className='' id='mySlide' info={card} />
           ))}
         </div>
       </Swiper>
