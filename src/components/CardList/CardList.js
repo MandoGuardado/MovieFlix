@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 
 import { Swiper } from "swiper/react";
-import SwiperCore, { Navigation } from "swiper";
 
 import "./CardList.css";
 import "swiper/swiper-bundle.css";
 
 import Card from "../Card/Card";
-
-SwiperCore.use([Navigation]);
 
 const CardList = (props) => {
   return (
@@ -18,6 +15,8 @@ const CardList = (props) => {
         className='mySwiper video-list'
         slidesPerView={7}
         spaceBetween={10}
+        navigation
+        slidesPerGroup={6}
       >
         <div class='swiper-wrapper card-list'>
           {props.data.map((card) => (
