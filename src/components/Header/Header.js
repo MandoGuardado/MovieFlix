@@ -13,6 +13,8 @@ function Header(props) {
     const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
       if (user) return setIsUserLoggedIn(true);
 
+      setIsUserLoggedIn(false);
+
     });
 
     return unsubscribe;

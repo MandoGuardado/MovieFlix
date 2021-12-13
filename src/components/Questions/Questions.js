@@ -2,6 +2,7 @@ import React from "react";
 import "./Questions.css"
 import Accordion from 'react-bootstrap/Accordion'
 
+
 const Questions = () => {
 
 return(
@@ -32,7 +33,9 @@ return(
   </Accordion.Item>
 </Accordion>
 )
+
 }
+
 
   
 export default Questions;
