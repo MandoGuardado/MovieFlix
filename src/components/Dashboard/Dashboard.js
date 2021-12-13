@@ -8,6 +8,7 @@ import SwiperDemo from "../Swiper/Swiper";
 import YouTube from "react-youtube";
 
 import Modal from "../Modal/Modal";
+import { Button } from "react-bootstrap";
 
 const Dashboard = () => {
   const auth = getAuth();
@@ -52,7 +53,19 @@ const Dashboard = () => {
   return (
     <>
       <div className='dashboard-body'>
-        <div className='featured'>{featured?.title || featured?.name}</div>
+        <div
+          className='featured'
+          style={{
+            background: `linear-gradient(135deg, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0) 70%), url(${featured?.backdrop_path}) center no-repeat`,
+            backgroundSize: "cover",
+          }}
+        >
+          <div className='featured-content'>
+            <h2>{featured?.title || featured?.name}</h2>
+            <p>{featured?.overview}</p>
+            <Button text='Play' action='/play' />
+          </div>
+        </div>
         {cardList.map((list) => (
           <CardList
             key={list.data.cat}
