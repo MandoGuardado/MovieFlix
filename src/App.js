@@ -7,7 +7,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import SignUp from "./components/Form/SignUp";
 import SignIn from "./components/Form/SignIn";
 import MainDisplay from "./components/MainDisplay/MainDisplay";
-
+import Questions from "./components/Questions/Questions";
 import Dashboard from "./components/Dashboard/Dashboard";
 
 const App = () => {
@@ -35,7 +35,6 @@ const App = () => {
             </>
           }
         />
-
         <Route exact path='/signup' element={<SignUp />} />
         <Route exact path='/signin' element={<SignIn />} />
         <Route exact path='/dashboard' element={<Dashboard />} />

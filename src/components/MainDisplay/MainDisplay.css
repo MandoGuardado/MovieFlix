@@ -3,6 +3,7 @@
   color: #3f3d56;
 }
 
+
 .sign-up {
   background-color: rgb(175, 71, 245);
   padding: 1em;
@@ -23,29 +24,30 @@
   font-weight: 700;
   color: #3f3d56;
 }
-.MovieFlix {
-  height: 27rem;
-  max-width: 50rem;
-  border-radius: 8px;
-  margin-top: 300px;
-  margin-right: 100px;
-  background-color: black;
-  position: absolute;
-  top: 0;
-  right: 0;
+ .MovieFlix{
+    height: 27rem;
+    max-width: 50rem;
+    border-radius: 8px;
+    margin-top: 300px;
+    margin-right: 100px;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    right: 0;
+} 
+.display h1{
+    text-align: left;
+    inline-size: 350px;
+    overflow-wrap: break-word;
+    position: relative;
+    top: 250px;
+    left: 100px;
+    
 }
-.display h1 {
-  text-align: left;
-  inline-size: 350px;
-  overflow-wrap: break-word;
-  position: relative;
-  top: 250px;
-  left: 100px;
-}
-.display h4 {
-  text-align: right;
-  inline-size: 350px;
-  position: relative;
-  top: 250px;
-  left: -30px;
+.display h4{
+    text-align: right;
+    inline-size: 350px;
+    position: relative;
+    top: 250px;
+    left: -30px;
 }
