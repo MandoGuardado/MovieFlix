@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button, Row, Col } from "react-bootstrap";
+import { Modal, Button, Row, Col, Container } from "react-bootstrap";
 import YouTubeVideo from "../YouTube/YouTubeVideo"
 const CardModal = (props) => {
   const { videos: { results } } = props.data
@@ -19,7 +19,7 @@ const CardModal = (props) => {
       <Modal.Body>
         <h4>Synopsis</h4>
         <p>{data.overview}</p>
-        <container>
+        <Container>
           <Row>
             <Col xs={1}></Col>
             <Col xs={10} >
@@ -29,7 +29,7 @@ const CardModal = (props) => {
             </Col>
             <Col xs={1}></Col>
           </Row>
-        </container>
+        </Container>
 
       </Modal.Body>
       <Modal.Footer>

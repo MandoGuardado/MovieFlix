@@ -25,8 +25,8 @@ const Dashboard = () => {
     // };
 
     Promise.all([
-      axios.get("http://localhost:8000/upcoming-movies"),
-      axios.get("http://localhost:8000/trending"),
+      axios.get("http://localhost:5000/movies/upcoming"),
+      axios.get("http://localhost:5000/trending"),
     ]).then((results) => {
       console.log(results);
       setCardList(results);
@@ -37,8 +37,8 @@ const Dashboard = () => {
   return (
     <>
       <div className='dashboard-body'>
-        {cardList.map((list) => (
-          <CardList data={list.data} category='Trending' />
+        {cardList.map((list, index) => (
+          <CardList key={index} data={list.data} category='Trending' />
         ))}
         {/* <CardList data={data} category='Upcoming Movies' /> */}
 
