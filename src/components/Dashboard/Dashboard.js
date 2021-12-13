@@ -38,7 +38,7 @@ const Dashboard = () => {
     <>
       <div className='dashboard-body'>
         {cardList.map((list, index) => (
-          <CardList key={index} data={list.data} category='Trending' />
+          <CardList key={index} data={list.data.results} category={list.data.category} />
         ))}
         {/* <CardList data={data} category='Upcoming Movies' /> */}
 
