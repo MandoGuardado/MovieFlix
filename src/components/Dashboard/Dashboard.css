@@ -38,3 +38,10 @@
   background-color: #3ad29f;
   border: none;
 }
+
+.loader {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

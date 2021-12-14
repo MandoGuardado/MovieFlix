@@ -4,12 +4,13 @@ import axios from "axios";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import CardList from "../CardList/CardList";
-
+import Loader from "react-loader-spinner";
 import Button from "../Button/Button";
 
 const Dashboard = () => {
   const auth = getAuth();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
   const [cardList, setCardList] = useState([]);
   const [featured, setFeatured] = useState();
 
@@ -23,22 +24,34 @@ const Dashboard = () => {
       axios.get("http://localhost:8000/movies/upcoming"),
       axios.get("http://localhost:8000/tv/on-the-air"),
       axios.get("http://localhost:8000/movies/now-playing"),
-
-
     ]).then((results) => {
       console.log(results);
       setCardList(results);
+      setLoading(false);
     });
   }, []);
 
   useEffect(() => {
     const randomMovie = () => {
       let index = Math.floor(Math.random() * (20 - 0) + 1);
-      console.log(index);
       setFeatured(cardList[0]?.data.results[index]);
     };
     randomMovie();
   }, [cardList]);
+
+  if (loading) {
+    return (
+      <div class='loader'>
+        <Loader
+          type='BallTriangle'
+          color='#00BFFF'
+          height={80}
+          width={80}
+          // timeout={3000} //3 secs
+        />
+      </div>
+    );
+  }
   return (
     <>
       <div className='dashboard-body'>
