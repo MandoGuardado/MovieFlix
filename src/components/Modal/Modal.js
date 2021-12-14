@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useState } from "react";
-import { Modal, Button, Row, Col, Container } from "react-bootstrap";
+import React from "react";
+import { Modal } from "react-bootstrap";
 import YouTubeVideo from "../YouTube/YouTubeVideo";
 import "./Modal.css";
 const CardModal = (props) => {
