@@ -25,3 +25,30 @@
   color: #e5e5e5;
   font-weight: normal;
 }
+
+/* @media only screen and (min-width: 800px) {
+  .header-container {
+    padding: 2em 4em;
+  }
+  .nav-links ul li {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1050px) {
+  .header-container {
+    justify-content: space-between;
+    padding: 2em 4em;
+  }
+  .logo {
+    font-size: 1em;
+  }
+  .nav-links ul li {
+    font-size: 1.2em;
+    display: unset;
+  }
+  .button {
+    font-size: 0.75em;
+    padding: 6px;
+  }
+} */

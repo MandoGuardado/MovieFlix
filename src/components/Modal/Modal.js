@@ -3,20 +3,10 @@ import { Modal, Button, Row, Col, Container } from "react-bootstrap";
 import YouTubeVideo from "../YouTube/YouTubeVideo";
 import "./Modal.css";
 const CardModal = (props) => {
-  const [width, setWidth] = useState("");
   const {
     videos: { results },
   } = props.data;
   const { data } = props;
-
-  const ref = useRef(null);
-
-  useEffect(() => {
-    if (ref.current != null) {
-      setWidth(ref.current.offsetWidth);
-    }
-    // console.log(ref.current?.offsetWidth);
-  }, [props.showModal]);
 
   return (
     <Modal
@@ -34,9 +24,9 @@ const CardModal = (props) => {
         <h4>Synopsis</h4>
         <p>{data.overview}</p>
       </Modal.Body>
-      <Modal.Body ref={ref} className='modal-yt-body'>
+      <Modal.Body className='modal-yt-body'>
         <div className='you-tube-video'>
-          {<YouTubeVideo size={{ width: width }} id={results[0]?.key} />}
+          {<YouTubeVideo id={results[0]?.key} />}
         </div>
       </Modal.Body>
       <Modal.Footer>

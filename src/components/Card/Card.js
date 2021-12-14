@@ -9,7 +9,7 @@ import "../CardList/CardList.css";
 const Card = (props) => {
   const [showModal, setShowModal] = useState(false);
   const FavoriteComponent = props.favoriteComponent;
-  const {info} = props;
+  const { info } = props;
   return (
     <>
       <Modal
@@ -20,18 +20,19 @@ const Card = (props) => {
       />
 
       <SwiperSlide id='mySlide'>
-        <div className='image-container d-flex justify-content-start m-3'>
+        <div className='image-container'>
           <img
             onClick={() => setShowModal(true)}
             src={info.poster_path}
             alt='card'
           />
-          <div onClick={() => props.handleFavoriteClick(info)} className='overlay d-flex align-items-center justify-content-center'>
+          <div
+            onClick={() => props.handleFavoriteClick(info)}
+            className='overlay'
+          >
             <FavoriteComponent />
           </div>
-
         </div>
-
       </SwiperSlide>
     </>
   );

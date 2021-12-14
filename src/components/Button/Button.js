@@ -22,6 +22,13 @@ const Button = (props) => {
       </button>
     );
   }
+  if (props.action === "/play") {
+    return (
+      <button onClick={props.open} className='button'>
+        {props.text}
+      </button>
+    );
+  }
   return (
     <button className='button'>
       <Link to={props.action}> {props.text} </Link>
