@@ -33,3 +33,8 @@
   font-size: 22px;
   margin-bottom: 1.5em;
 }
+
+.featured-content > .button {
+  background-color: #3ad29f;
+  border: none;
+}

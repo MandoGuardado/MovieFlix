@@ -4,11 +4,8 @@ import axios from "axios";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import CardList from "../CardList/CardList";
-import SwiperDemo from "../Swiper/Swiper";
-import YouTube from "react-youtube";
 
-import Modal from "../Modal/Modal";
-import { Button } from "react-bootstrap";
+import Button from "../Button/Button";
 
 const Dashboard = () => {
   const auth = getAuth();
@@ -20,7 +17,6 @@ const Dashboard = () => {
     if (!auth.currentUser) return navigate("/");
 
     Promise.all([
-
       axios.get("http://localhost:8000/trending"),
       axios.get("http://localhost:8000/movies/popular"),
       axios.get("http://localhost:8000/tv/popular"),
@@ -28,20 +24,13 @@ const Dashboard = () => {
       axios.get("http://localhost:8000/tv/on-the-air"),
       axios.get("http://localhost:8000/movies/now-playing"),
 
+
     ]).then((results) => {
       console.log(results);
       setCardList(results);
     });
   }, []);
 
-  // useEffect(() => {
-  //   const fetchFeatured = async () => {
-  //     const result = await axios.get("http://localhost:8000/latest");
-  //     console.log(result.data);
-  //     setFeatured(result.data);
-  //   };
-  //   fetchFeatured();
-  // }, []);
   useEffect(() => {
     const randomMovie = () => {
       let index = Math.floor(Math.random() * (20 - 0) + 1);
@@ -53,12 +42,10 @@ const Dashboard = () => {
   return (
     <>
       <div className='dashboard-body'>
-
         <div
           className='featured'
           style={{
             background: `linear-gradient(135deg, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0) 70%), url(${featured?.backdrop_path}) center no-repeat`,
-            backgroundSize: "cover",
           }}
         >
           <div className='featured-content'>

@@ -10,11 +10,9 @@ import MainDisplay from "./components/MainDisplay/MainDisplay";
 import Questions from "./components/Questions/Questions";
 import Dashboard from "./components/Dashboard/Dashboard";
 import FooterPage from "./components/Footer";
-import '@fortawesome/fontawesome-free/css/all.min.css'; 
-import'bootstrap-css-only/css/bootstrap.min.css'; 
-import'mdbreact/dist/css/mdb.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import TvShows from "./components/TvShows/TvShows.js";
-import Movies from "./components/Movies/Movies.js"
+import Movies from "./components/Movies/Movies.js";
 
 const App = () => {
   const navigate = useNavigate();
@@ -32,18 +30,14 @@ const App = () => {
     <div className='main-container'>
       <Header />
 
-    
-
       <Routes>
         <Route
           exact
           path='/'
           element={
             <>
-             <MainDisplay/>
-     <Questions/>
-     <FooterPage/>
-              
+              <MainDisplay />
+              <Questions />
             </>
           }
         />
@@ -51,10 +45,11 @@ const App = () => {
         <Route exact path='/signin' element={<SignIn />} />
         <Route exact path='/dashboard' element={<Dashboard />} />
         <Route exact path='/tvshows' element={<TvShows />} />
-        <Route exact path='/movies' element={<Movies/>} />
-        
+        <Route exact path='/movies' element={<Movies />} />
+
         {/* <Route path='*' element={<h1>NOT FOUND</h1>} /> */}
       </Routes>
+      <FooterPage />
     </div>
   );
 };

@@ -4,6 +4,9 @@
   /* height: 30vh; */
   padding: 20px, 0;
 }
+.card-list-container h2 {
+  color: #e5e5e5;
+}
 .card-list {
   padding: 20px;
 }
