@@ -90,8 +90,8 @@ const Dashboard = (props) => {
         <CardList
           data={props.myList}
           category='My List'
-          handleFavoriteClick={props.handleFavoriteClick}
-          favoriteComponent={props.favoriteComponent}
+          handleFavoriteClick={props.handleRemoveFavorite}
+          favoriteComponent={props.removeComponent}
         />
       </div>
     </>

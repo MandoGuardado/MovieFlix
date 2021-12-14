@@ -112,6 +112,8 @@ const App = () => {
               handleFavoriteClick={addFavoriteMovie}
               favoriteComponent={AddFavorite}
               myList={favorites}
+              removeComponent={RemoveFavorite}
+              handleRemoveFavorite= {removeFavoriteMovie}
             />
           }
         />
