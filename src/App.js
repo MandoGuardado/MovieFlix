@@ -17,6 +17,7 @@ import Movies from "./components/Movies/Movies.js";
 import AddFavorite from "./components/Favorites/AddFavorite.js";
 import RemoveFavorite from "./components/Favorites/RemoveFavorites";
 import MyList from "./components/MyList/MyList";
+const hosting_url = `http://localhost:8000/`
 
 const App = () => {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const App = () => {
       if (user) {
         const { uid } = getAuth().currentUser;
         navigate("/dashboard");
-        fetch("http://localhost:8000/get-favorites", {
+        fetch(`${hosting_url}get-favorites`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -50,7 +51,7 @@ const App = () => {
     if (!favorites.includes(movie)) {
       const newFavoritesList = [...favorites, movie];
       // setFavorites(newFavoritesList);
-      fetch("http://localhost:8000/favorites", {
+      fetch(`${hosting_url}favorites`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -74,7 +75,7 @@ const App = () => {
       (favorite) => favorite.id !== movie.id
     );
 
-    fetch("http://localhost:8000/favorites", {
+    fetch(`${hosting_url}favorites`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
