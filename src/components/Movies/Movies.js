@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import CardList from "../CardList/CardList";
 import Loader from "react-loader-spinner";
 
-const Movies = () => {
+const Movies = (props) => {
   const auth = getAuth();
   const navigate = useNavigate();
 
@@ -48,6 +48,8 @@ const Movies = () => {
             key={index}
             data={list.data.results}
             category={list.data.category}
+            handleFavoriteClick={props.handleFavoriteClick}
+            favoriteComponent={props.favoriteComponent}
           />
         ))}
       </div>
