@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import CardList from "../CardList/CardList";
 import Loader from "react-loader-spinner";
 import Button from "../Button/Button";
+import Modal from "../Modal/Modal";
 
 const Dashboard = (props) => {
   const auth = getAuth();
@@ -13,6 +14,7 @@ const Dashboard = (props) => {
   const [loading, setLoading] = useState(true);
   const [cardList, setCardList] = useState([]);
   const [featured, setFeatured] = useState();
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (!auth.currentUser) return navigate("/");
@@ -25,7 +27,6 @@ const Dashboard = (props) => {
       axios.get("http://localhost:8000/tv/on-the-air"),
       axios.get("http://localhost:8000/movies/now-playing"),
     ]).then((results) => {
-      console.log(results);
       setCardList(results);
       setLoading(false);
     });
@@ -55,6 +56,12 @@ const Dashboard = (props) => {
   return (
     <>
       <div className='dashboard-body'>
+        <Modal
+          showModal={showModal}
+          data={featured}
+          show={showModal}
+          onHide={() => setShowModal(false)}
+        />
         <div
           className='featured'
           style={{
@@ -64,7 +71,11 @@ const Dashboard = (props) => {
           <div className='featured-content'>
             <h2>{featured?.title || featured?.name}</h2>
             <p>{featured?.overview}</p>
-            <Button text='Play' action='/play' />
+            <Button
+              open={() => setShowModal(true)}
+              text='Play'
+              action='/play'
+            />
           </div>
         </div>
         {cardList.map((list, index) => (
