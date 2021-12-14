@@ -1,39 +1,53 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Modal, Button, Row, Col, Container } from "react-bootstrap";
-import YouTubeVideo from "../YouTube/YouTubeVideo"
+import YouTubeVideo from "../YouTube/YouTubeVideo";
+import "./Modal.css";
 const CardModal = (props) => {
-  const { videos: { results } } = props.data
+  const [width, setWidth] = useState("");
+  const {
+    videos: { results },
+  } = props.data;
   const { data } = props;
+
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (ref.current != null) {
+      setWidth(ref.current.offsetWidth);
+    }
+    // console.log(ref.current?.offsetWidth);
+  }, [props.showModal]);
+
   return (
     <Modal
       {...props}
-      size='lg'
+      size='xl'
       aria-labelledby='contained-modal-title-vcenter'
       centered
     >
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title id='contained-modal-title-vcenter'>
-          {data?.title}
+          {data?.title || data.name}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <h4>Synopsis</h4>
         <p>{data.overview}</p>
-        <Container>
-          <Row>
-            <Col xs={1}></Col>
-            <Col xs={10} >
-              <div className="you-tube-video">
-                {results.length > 0 && <YouTubeVideo id={results[0].key} />}
-              </div>
-            </Col>
-            <Col xs={1}></Col>
-          </Row>
-        </Container>
-
+      </Modal.Body>
+      <Modal.Body ref={ref} className='modal-yt-body'>
+        <div className='you-tube-video'>
+          {<YouTubeVideo size={{ width: width }} id={results[0]?.key} />}
+        </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        <div>
+          <ul>
+            Genres:
+            {data.genres.map((genre) => (
+              <li>{genre.name}</li>
+            ))}
+          </ul>
+        </div>
       </Modal.Footer>
     </Modal>
   );

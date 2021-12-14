@@ -3,9 +3,6 @@ import axios from "axios";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import CardList from "../CardList/CardList";
-import SwiperDemo from "../Swiper/Swiper";
-
-import Modal from "../Modal/Modal";
 
 const Movies = (props) => {
     const auth = getAuth();
@@ -14,8 +11,10 @@ const Movies = (props) => {
     const [cardList, setCardList] = useState([]);
     const [showModal, setShowModal] = useState(false);
 
+
     useEffect(() => {
         if (!auth.currentUser) return navigate("/");
+
 
         Promise.all([
             axios.get("http://localhost:8000/movies/now-playing"),

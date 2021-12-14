@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 
 import { Swiper } from "swiper/react";
+import SwiperCore, { Navigation } from "swiper";
 
 import "./CardList.css";
 import "swiper/swiper-bundle.css";
 
 import Card from "../Card/Card";
 
+SwiperCore.use([Navigation]);
 const CardList = (props) => {
   return (
     <div className='card-list-container'>

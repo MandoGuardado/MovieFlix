@@ -1,0 +1,14 @@
+.modal-content {
+  color: white;
+  background-color: #313638;
+  border-radius: 20px;
+}
+
+.modal-footer {
+  justify-content: start;
+}
+
+.modal-footer > div > ul {
+  display: flex;
+  gap: 15px;
+}

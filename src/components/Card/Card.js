@@ -12,7 +12,12 @@ const Card = (props) => {
   const {info} = props;
   return (
     <>
-      <Modal data={info} show={showModal} onHide={() => setShowModal(false)} />
+      <Modal
+        showModal={showModal}
+        data={info}
+        show={showModal}
+        onHide={() => setShowModal(false)}
+      />
 
       <SwiperSlide id='mySlide'>
         <div className='image-container d-flex justify-content-start m-3'>

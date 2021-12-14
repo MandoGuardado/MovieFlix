@@ -5,7 +5,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import "./Form.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -60,6 +60,12 @@ const SignIn = () => {
         />
 
         <button>Sign in!</button>
+        <div className='form-footer'>
+          <p>Dont have and account?</p>
+          <p>
+            Register here: <Link to='/signup'> Sign up! </Link>
+          </p>
+        </div>
       </form>
     </div>
   );

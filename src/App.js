@@ -111,8 +111,11 @@ const App = () => {
         <Route exact path='/movies' element={<Movies handleFavoriteClick={addFavoriteMovie} favoriteComponent={AddFavorite} />} />
         <Route exact path='/mylist' element={<MyList movies={favorites} handleFavoriteClick={removeFavoriteMovie} favoriteComponent={RemoveFavorite} />} />
 
+
+
         {/* <Route path='*' element={<h1>NOT FOUND</h1>} /> */}
       </Routes>
+      <FooterPage />
     </div>
   );
 };
