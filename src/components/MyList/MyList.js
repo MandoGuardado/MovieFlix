@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import CardList from "../CardList/CardList";
