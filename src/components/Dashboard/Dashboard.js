@@ -7,7 +7,7 @@ import CardList from "../CardList/CardList";
 import Loader from "react-loader-spinner";
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
-const hosting_url = `http://localhost:8000/`
+const hosting_url = process.env.REACT_APP_HOSTING_URL;
 
 const Dashboard = (props) => {
   const auth = getAuth();

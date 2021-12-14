@@ -4,7 +4,7 @@ import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import CardList from "../CardList/CardList";
 import Loader from "react-loader-spinner";
-const hosting_url = `http://localhost:8000/`
+const hosting_url = process.env.REACT_APP_HOSTING_URL;
 const Movies = (props) => {
   const auth = getAuth();
   const navigate = useNavigate();

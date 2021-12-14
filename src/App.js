@@ -17,7 +17,7 @@ import Movies from "./components/Movies/Movies.js";
 import AddFavorite from "./components/Favorites/AddFavorite.js";
 import RemoveFavorite from "./components/Favorites/RemoveFavorites";
 import MyList from "./components/MyList/MyList";
-const hosting_url = `http://localhost:8000/`
+const hosting_url = process.env.REACT_APP_HOSTING_URL;
 
 const App = () => {
   const navigate = useNavigate();
