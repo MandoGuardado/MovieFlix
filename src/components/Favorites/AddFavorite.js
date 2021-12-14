@@ -3,12 +3,12 @@ const AddFavorite = () => {
   return (
     <>
       <span className='mr-2' style={{ color: "white" }}>
-        Add to Favorites
+        {"Add to Favorites "}
       </span>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         width='16'
-        height='20'
+        height='16'
         fill='Green'
         class='bi bi-check-lg'
         viewBox='0 0 16 16'

@@ -47,8 +47,6 @@ const App = () => {
 
   const addFavoriteMovie = (movie) => {
     const { uid, displayName } = getAuth().currentUser;
-    console.log(favorites.includes(movie));
-
     if (!favorites.includes(movie)) {
       const newFavoritesList = [...favorites, movie];
       // setFavorites(newFavoritesList);
@@ -64,6 +62,9 @@ const App = () => {
         setFavorites(newFavoritesList);
         console.log("New Favorite has been added");
       });
+    }
+    else{
+      console.log("Movies is already a favorite!")
     }
   };
 
@@ -112,6 +113,8 @@ const App = () => {
               handleFavoriteClick={addFavoriteMovie}
               favoriteComponent={AddFavorite}
               myList={favorites}
+              removeComponent={RemoveFavorite}
+              handleRemoveFavorite= {removeFavoriteMovie}
             />
           }
         />
