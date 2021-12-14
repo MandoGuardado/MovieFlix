@@ -7,11 +7,12 @@ import CardList from "../CardList/CardList";
 
 import Button from "../Button/Button";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [cardList, setCardList] = useState([]);
   const [featured, setFeatured] = useState();
+  const [myList, setMyList] =  useState(props.myList)
 
   useEffect(() => {
     if (!auth.currentUser) return navigate("/");
@@ -59,8 +60,16 @@ const Dashboard = () => {
             key={index}
             data={list.data.results}
             category={list.data.category}
+            handleFavoriteClick={props.handleFavoriteClick} 
+            favoriteComponent={props.favoriteComponent}
           />
         ))}
+        <CardList
+            data={myList}
+            category="My List"
+            handleFavoriteClick={props.handleFavoriteClick} 
+            favoriteComponent={props.favoriteComponent}
+          />
       </div>
     </>
   );

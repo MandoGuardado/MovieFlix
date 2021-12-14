@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./components/Header/Header";
 import "./firebase";
 import "./App.css";
@@ -10,26 +10,87 @@ import MainDisplay from "./components/MainDisplay/MainDisplay";
 import Questions from "./components/Questions/Questions";
 import Dashboard from "./components/Dashboard/Dashboard";
 import FooterPage from "./components/Footer";
-import "@fortawesome/fontawesome-free/css/all.min.css";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 import TvShows from "./components/TvShows/TvShows.js";
-import Movies from "./components/Movies/Movies.js";
+import Movies from "./components/Movies/Movies.js"
+import AddFavorite from "./components/Favorites/AddFavorite.js";
+import RemoveFavorite from "./components/Favorites/RemoveFavorites";
+import MyList from "./components/MyList/MyList";
 
 const App = () => {
   const navigate = useNavigate();
+  const [favorites, setFavorites] = useState([]);
+
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
+      
       if (user) {
+        const { uid } = getAuth().currentUser
         navigate("/dashboard");
+        fetch("http://localhost:8000/get-favorites", {
+          method: 'POST',
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            fbId: uid,
+          })
+        }).then((data) => data.json())
+        .then(data => {
+          setFavorites(data)
+        })
       }
     });
     return unsubscribe;
   }, []);
 
+  useEffect(() => { },)
+
+
+  const addFavoriteMovie = (movie) => {
+    const { uid, displayName } = getAuth().currentUser
+    console.log(favorites.includes(movie))
+
+    if (!favorites.includes(movie)) {
+      const newFavoritesList = [...favorites, movie];
+      setFavorites(newFavoritesList);
+      fetch("http://localhost:8000/favorites", {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user: displayName,
+          fbId: uid,
+          favMovie: newFavoritesList
+        })
+      }).then(() => console.log("New Favorite has been added"))
+    }
+
+
+  };
+
+  const removeFavoriteMovie = (movie) => {
+    const { uid, displayName } = getAuth().currentUser
+    const updatedFavorites = favorites.filter(
+      (favorite) => favorite.id !== movie.id
+    );
+    setFavorites(updatedFavorites);
+    fetch("http://localhost:8000/favorites", {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user: displayName,
+        fbId: uid,
+        favMovie: updatedFavorites
+      })
+    }).then(() => console.log("New Favorite has been added"))
+
+  };
+
   return (
     <div className='main-container'>
       <Header />
-
       <Routes>
         <Route
           exact
@@ -38,14 +99,19 @@ const App = () => {
             <>
               <MainDisplay />
               <Questions />
+              <FooterPage />
+
             </>
           }
         />
         <Route exact path='/signup' element={<SignUp />} />
         <Route exact path='/signin' element={<SignIn />} />
-        <Route exact path='/dashboard' element={<Dashboard />} />
-        <Route exact path='/tvshows' element={<TvShows />} />
-        <Route exact path='/movies' element={<Movies />} />
+        <Route exact path='/dashboard' element={<Dashboard handleFavoriteClick={addFavoriteMovie} favoriteComponent={AddFavorite} myList={favorites}/>} />
+        <Route exact path='/tvshows' element={<TvShows handleFavoriteClick={addFavoriteMovie} favoriteComponent={AddFavorite} />} />
+        <Route exact path='/movies' element={<Movies handleFavoriteClick={addFavoriteMovie} favoriteComponent={AddFavorite} />} />
+        <Route exact path='/mylist' element={<MyList movies={favorites} handleFavoriteClick={removeFavoriteMovie} favoriteComponent={RemoveFavorite} />} />
+
+
 
         {/* <Route path='*' element={<h1>NOT FOUND</h1>} /> */}
       </Routes>
