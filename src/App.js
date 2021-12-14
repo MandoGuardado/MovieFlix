@@ -27,8 +27,20 @@ const App = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
+      
       if (user) {
+        const { uid } = getAuth().currentUser
         navigate("/dashboard");
+        fetch("http://localhost:8000/get-favorites", {
+          method: 'POST',
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            fbId: uid,
+          })
+        }).then((data) => data.json())
+        .then(data => {
+          setFavorites(data)
+        })
       }
     });
     return unsubscribe;
@@ -38,34 +50,47 @@ const App = () => {
 
 
   const addFavoriteMovie = (movie) => {
-    const newFavoritesList = [...favorites, movie];
-    setFavorites(newFavoritesList);
-    fetch("http://localhost:8000/favorites", {
-      method: 'POST',
-      headers:{"Content-Type" : "application/json"},
-      body: JSON.stringify({user:"John", favMovie:favorites})
-  }).then(()=>{
-      console.log("DB has been updated")
+    const { uid, displayName } = getAuth().currentUser
+    console.log(favorites.includes(movie))
 
-  })
+    if (!favorites.includes(movie)) {
+      const newFavoritesList = [...favorites, movie];
+      setFavorites(newFavoritesList);
+      fetch("http://localhost:8000/favorites", {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user: displayName,
+          fbId: uid,
+          favMovie: newFavoritesList
+        })
+      }).then(() => console.log("New Favorite has been added"))
+    }
+
 
   };
 
   const removeFavoriteMovie = (movie) => {
-    const newFavoritesList = favorites.filter(
-      (favourite) => favourite.id !== movie.id
+    const { uid, displayName } = getAuth().currentUser
+    const updatedFavorites = favorites.filter(
+      (favorite) => favorite.id !== movie.id
     );
-
-    setFavorites(newFavoritesList);
+    setFavorites(updatedFavorites);
+    fetch("http://localhost:8000/favorites", {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user: displayName,
+        fbId: uid,
+        favMovie: updatedFavorites
+      })
+    }).then(() => console.log("New Favorite has been added"))
 
   };
 
   return (
     <div className='main-container'>
       <Header />
-
-
-
       <Routes>
         <Route
           exact
@@ -81,11 +106,11 @@ const App = () => {
         />
         <Route exact path='/signup' element={<SignUp />} />
         <Route exact path='/signin' element={<SignIn />} />
-        <Route exact path='/dashboard' element={<Dashboard handleFavoriteClick={addFavoriteMovie} favoriteComponent={AddFavorite} />} />
-        <Route exact path='/tvshows' element={<TvShows  handleFavoriteClick={addFavoriteMovie} favoriteComponent={AddFavorite}/>} />
-        <Route exact path='/movies' element={<Movies  handleFavoriteClick={addFavoriteMovie} favoriteComponent={AddFavorite} />} />
-        <Route exact path='/mylist' element={<MyList movies={favorites} handleFavoriteClick={removeFavoriteMovie}  favoriteComponent={RemoveFavorite}/>} />
- 
+        <Route exact path='/dashboard' element={<Dashboard handleFavoriteClick={addFavoriteMovie} favoriteComponent={AddFavorite} myList={favorites}/>} />
+        <Route exact path='/tvshows' element={<TvShows handleFavoriteClick={addFavoriteMovie} favoriteComponent={AddFavorite} />} />
+        <Route exact path='/movies' element={<Movies handleFavoriteClick={addFavoriteMovie} favoriteComponent={AddFavorite} />} />
+        <Route exact path='/mylist' element={<MyList movies={favorites} handleFavoriteClick={removeFavoriteMovie} favoriteComponent={RemoveFavorite} />} />
+
         {/* <Route path='*' element={<h1>NOT FOUND</h1>} /> */}
       </Routes>
     </div>
