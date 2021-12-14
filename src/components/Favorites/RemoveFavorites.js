@@ -4,14 +4,14 @@ const RemoveFavorite = () => {
   return (
     <>
       <span className='mr-2' style={{ color: "white" }}>
-        Remove from favorites
+        {"Remove from favorites "}
       </span>
       <svg
-        width='1em'
-        height='1em'
+        width='16'
+        height='16'
         viewBox='0 0 16 16'
         class='bi bi-x-square'
-        fill='Green'
+        fill='Red'
         xmlns='http://www.w3.org/2000/svg'
       >
         <path
