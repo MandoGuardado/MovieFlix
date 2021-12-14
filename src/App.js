@@ -99,7 +99,6 @@ const App = () => {
             <>
               <MainDisplay />
               <Questions />
-              <FooterPage />
             </>
           }
         />

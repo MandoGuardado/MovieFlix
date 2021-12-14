@@ -3,6 +3,8 @@ import "./Button.css";
 import { Link } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import arrow from "../../icons/arrow.svg";
+import arrowup from "../../icons/arrowup.svg";
 
 const Button = (props) => {
   const auth = getAuth();
@@ -32,6 +34,11 @@ const Button = (props) => {
   return (
     <button className='button'>
       <Link to={props.action}> {props.text} </Link>
+      {props.action === "/signin" ? (
+        <img src={arrow} alt='arrow' />
+      ) : (
+        <img src={arrowup} alt='arrowup' />
+      )}
     </button>
   );
 };
