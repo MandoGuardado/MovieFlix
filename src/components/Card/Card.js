@@ -11,7 +11,12 @@ const Card = ({ info }) => {
 
   return (
     <>
-      <Modal data={info} show={showModal} onHide={() => setShowModal(false)} />
+      <Modal
+        showModal={showModal}
+        data={info}
+        show={showModal}
+        onHide={() => setShowModal(false)}
+      />
 
       <SwiperSlide id='mySlide'>
         <img

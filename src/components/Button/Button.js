@@ -17,13 +17,13 @@ const Button = (props) => {
 
   if (props.action === "/signout") {
     return (
-      <button className='btn' onClick={handleSignOut}>
+      <button className='button' onClick={handleSignOut}>
         {props.text}
       </button>
     );
   }
   return (
-    <button className='btn'>
+    <button className='button'>
       <Link to={props.action}> {props.text} </Link>
     </button>
   );

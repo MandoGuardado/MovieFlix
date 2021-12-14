@@ -1,5 +1,6 @@
 .form-container {
   display: flex;
+  height: 70vh;
   justify-content: center;
   align-self: center;
 }
@@ -36,4 +37,11 @@
   border: none;
   box-shadow: 0.1em 0.1em black;
   cursor: pointer;
+}
+
+.form-footer {
+  margin-top: 20px;
+}
+.form-footer a:visited {
+  color: #3ad29f;
 }

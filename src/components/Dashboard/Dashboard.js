@@ -4,10 +4,7 @@ import axios from "axios";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import CardList from "../CardList/CardList";
-import SwiperDemo from "../Swiper/Swiper";
-import YouTube from "react-youtube";
 
-import Modal from "../Modal/Modal";
 import Button from "../Button/Button";
 
 const Dashboard = () => {
@@ -34,19 +31,17 @@ const Dashboard = () => {
     const randomMovie = () => {
       let index = Math.floor(Math.random() * (20 - 0) + 1);
       console.log(index);
-      setFeatured(cardList[0]?.data[index]);
+      setFeatured(cardList[0]?.data.results[index]);
     };
     randomMovie();
   }, [cardList]);
   return (
     <>
       <div className='dashboard-body'>
-
         <div
           className='featured'
           style={{
             background: `linear-gradient(135deg, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0) 70%), url(${featured?.backdrop_path}) center no-repeat`,
-            backgroundSize: "cover",
           }}
         >
           <div className='featured-content'>
