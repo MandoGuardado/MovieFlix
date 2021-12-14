@@ -7,7 +7,7 @@ import CardList from "../CardList/CardList";
 import Loader from "react-loader-spinner";
 import Button from "../Button/Button";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -72,8 +72,16 @@ const Dashboard = () => {
             key={index}
             data={list.data.results}
             category={list.data.category}
+            handleFavoriteClick={props.handleFavoriteClick}
+            favoriteComponent={props.favoriteComponent}
           />
         ))}
+        <CardList
+          data={props.myList}
+          category='My List'
+          handleFavoriteClick={props.handleFavoriteClick}
+          favoriteComponent={props.favoriteComponent}
+        />
       </div>
     </>
   );

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import CardList from "../CardList/CardList";
 import Loader from "react-loader-spinner";
 
-const TvShows = () => {
+const TvShows = (props) => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [cardList, setCardList] = useState([]);
@@ -43,11 +43,9 @@ const TvShows = () => {
     <>
       <div className='dashboard-body'>
         {cardList.map((list, index) => (
-          <CardList
-            key={index}
-            data={list.data.results}
-            category={list.data.category}
-          />
+          <CardList key={index} data={list.data.results} category={list.data.category} handleFavoriteClick={props.handleFavoriteClick}
+            favoriteComponent={props.favoriteComponent} />
+
         ))}
       </div>
     </>
