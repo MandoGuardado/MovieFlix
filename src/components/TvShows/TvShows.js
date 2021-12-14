@@ -3,11 +3,13 @@ import axios from "axios";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import CardList from "../CardList/CardList";
+import Loader from "react-loader-spinner";
 
 const TvShows = (props) => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [cardList, setCardList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!auth.currentUser) return navigate("/");
@@ -19,8 +21,23 @@ const TvShows = (props) => {
     ]).then((results) => {
       console.log(results);
       setCardList(results);
+      setLoading(false);
     });
   }, []);
+
+  if (loading) {
+    return (
+      <div class='loader'>
+        <Loader
+          type='BallTriangle'
+          color='#00BFFF'
+          height={80}
+          width={80}
+          // timeout={3000} //3 secs
+        />
+      </div>
+    );
+  }
 
   return (
     <>

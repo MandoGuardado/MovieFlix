@@ -3,25 +3,24 @@ import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import CardList from "../CardList/CardList";
 
-
 const MyList = (props) => {
-  const {movies} = props
+  const { movies } = props;
   const auth = getAuth();
   const navigate = useNavigate();
-  const [cardList, setCardList] = useState(movies);
-
 
   useEffect(() => {
     if (!auth.currentUser) return navigate("/");
-
   }, []);
 
   return (
     <>
       <div className='dashboard-body'>
-     
-          <CardList data={cardList} category="My Favorites" handleFavoriteClick={props.handleFavoriteClick} favoriteComponent= {props.favoriteComponent}/>
-
+        <CardList
+          data={movies}
+          category='My Favorites'
+          handleFavoriteClick={props.handleFavoriteClick}
+          favoriteComponent={props.favoriteComponent}
+        />
       </div>
     </>
   );

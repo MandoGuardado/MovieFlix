@@ -3,40 +3,56 @@ import axios from "axios";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import CardList from "../CardList/CardList";
+import Loader from "react-loader-spinner";
 
-const Movies = (props) => {
-    const auth = getAuth();
-    const navigate = useNavigate();
-    const [data, setData] = useState([]);
-    const [cardList, setCardList] = useState([]);
-    const [showModal, setShowModal] = useState(false);
+const Movies = () => {
+  const auth = getAuth();
+  const navigate = useNavigate();
 
+  const [cardList, setCardList] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        if (!auth.currentUser) return navigate("/");
+  useEffect(() => {
+    if (!auth.currentUser) return navigate("/");
 
+    Promise.all([
+      axios.get("http://localhost:8000/movies/now-playing"),
+      axios.get("http://localhost:8000/movies/popular"),
+      axios.get("http://localhost:8000/movies/upcoming"),
+    ]).then((results) => {
+      console.log(results);
+      setCardList(results);
+      setLoading(false);
+    });
+  }, []);
 
-        Promise.all([
-            axios.get("http://localhost:8000/movies/now-playing"),
-            axios.get("http://localhost:8000/movies/popular"),
-            axios.get("http://localhost:8000/movies/upcoming"),
-
-        ]).then((results) => {
-            console.log(results);
-            setCardList(results);
-        });
-    }, []);
-
+  if (loading) {
     return (
-        <>
-            <div className='dashboard-body'>
-                {cardList.map((list, index) => (
-                    <CardList key={index} data={list.data.results} category={list.data.category} handleFavoriteClick={props.handleFavoriteClick}
-                        favoriteComponent={props.favoriteComponent} />
-                ))}
-            </div>
-        </>
+      <div class='loader'>
+        <Loader
+          type='BallTriangle'
+          color='#00BFFF'
+          height={80}
+          width={80}
+          // timeout={3000} //3 secs
+        />
+      </div>
     );
+  }
+
+  return (
+    <>
+      <div className='dashboard-body'>
+        {cardList.map((list, index) => (
+          <CardList
+            key={index}
+            data={list.data.results}
+            category={list.data.category}
+          />
+        ))}
+      </div>
+    </>
+  );
 };
 
 export default Movies;
