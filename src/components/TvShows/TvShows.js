@@ -4,7 +4,7 @@ import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import CardList from "../CardList/CardList";
 import Loader from "react-loader-spinner";
-
+const hosting_url = `http://localhost:8000/`
 const TvShows = (props) => {
   const auth = getAuth();
   const navigate = useNavigate();
@@ -15,9 +15,9 @@ const TvShows = (props) => {
     if (!auth.currentUser) return navigate("/");
 
     Promise.all([
-      axios.get("http://localhost:8000/tv/popular"),
-      axios.get("http://localhost:8000/tv/top-rated"),
-      axios.get("http://localhost:8000/tv/on-the-air"),
+      axios.get(`${hosting_url}tv/popular`),
+      axios.get(`${hosting_url}tv/top-rated`),
+      axios.get(`${hosting_url}tv/on-the-air`),
     ]).then((results) => {
       console.log(results);
       setCardList(results);

@@ -7,6 +7,7 @@ import CardList from "../CardList/CardList";
 import Loader from "react-loader-spinner";
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
+const hosting_url = `http://localhost:8000/`
 
 const Dashboard = (props) => {
   const auth = getAuth();
@@ -20,12 +21,12 @@ const Dashboard = (props) => {
     if (!auth.currentUser) return navigate("/");
 
     Promise.all([
-      axios.get("http://localhost:8000/trending"),
-      axios.get("http://localhost:8000/movies/popular"),
-      axios.get("http://localhost:8000/tv/popular"),
-      axios.get("http://localhost:8000/movies/upcoming"),
-      axios.get("http://localhost:8000/tv/on-the-air"),
-      axios.get("http://localhost:8000/movies/now-playing"),
+      axios.get(`${hosting_url}trending`),
+      axios.get(`${hosting_url}movies/popular`),
+      axios.get(`${hosting_url}tv/popular`),
+      axios.get(`${hosting_url}movies/upcoming`),
+      axios.get(`${hosting_url}tv/on-the-air`),
+      axios.get(`${hosting_url}movies/now-playing`),
     ]).then((results) => {
       setCardList(results);
       setLoading(false);
