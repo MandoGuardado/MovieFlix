@@ -10,31 +10,31 @@ const Movies = () => {
 
   const [cardList, setCardList] = useState([]);
 
-  useEffect(() => {
-    if (!auth.currentUser) return navigate("/");
 
-    Promise.all([
-      axios.get("http://localhost:8000/movies/popular"),
-      axios.get("http://localhost:8000/movies/upcoming"),
-    ]).then((results) => {
-      console.log(results);
-      setCardList(results);
-    });
-  }, []);
+    useEffect(() => {
+        if (!auth.currentUser) return navigate("/");
 
-  return (
-    <>
-      <div className='dashboard-body'>
-        {cardList.map((list, index) => (
-          <CardList
-            key={index}
-            data={list.data.results}
-            category={list.data.category}
-          />
-        ))}
-      </div>
-    </>
-  );
+
+        Promise.all([
+            axios.get("http://localhost:8000/movies/now-playing"),
+            axios.get("http://localhost:8000/movies/popular"),
+            axios.get("http://localhost:8000/movies/upcoming"),
+
+        ]).then((results) => {
+            console.log(results);
+            setCardList(results);
+        });
+    }, []);
+
+    return (
+        <>
+            <div className='dashboard-body'>
+                {cardList.map((list, index) => (
+                    <CardList key={index} data={list.data.results} category={list.data.category} />
+                ))}
+            </div>
+        </>
+    );
 };
 
 export default Movies;
