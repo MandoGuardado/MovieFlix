@@ -7,7 +7,7 @@ import SwiperDemo from "../Swiper/Swiper";
 
 import Modal from "../Modal/Modal";
 
-const Movies = () => {
+const Movies = (props) => {
     const auth = getAuth();
     const navigate = useNavigate();
     const [data, setData] = useState([]);
@@ -32,7 +32,8 @@ const Movies = () => {
         <>
             <div className='dashboard-body'>
                 {cardList.map((list, index) => (
-                    <CardList key={index} data={list.data.results} category={list.data.category} />
+                    <CardList key={index} data={list.data.results} category={list.data.category} handleFavoriteClick={props.handleFavoriteClick}
+                        favoriteComponent={props.favoriteComponent} />
                 ))}
             </div>
         </>

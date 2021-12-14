@@ -20,7 +20,7 @@ const CardList = (props) => {
       >
         <div className='swiper-wrapper card-list'>
           {props.data.map((card, index) => (
-            <Card key={index} className='' id='mySlide' info={card} />
+            <Card key={index} className='' id='mySlide' info={card} handleFavoriteClick={props.handleFavoriteClick} favoriteComponent={props.favoriteComponent}/>
           ))}
         </div>
       </Swiper>

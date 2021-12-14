@@ -6,19 +6,27 @@ import "swiper/swiper-bundle.css";
 import "./Card.css";
 import "../CardList/CardList.css";
 
-const Card = ({ info }) => {
+const Card = (props) => {
   const [showModal, setShowModal] = useState(false);
-
+  const FavoriteComponent = props.favoriteComponent;
+  const {info} = props;
   return (
     <>
       <Modal data={info} show={showModal} onHide={() => setShowModal(false)} />
 
       <SwiperSlide id='mySlide'>
-        <img
-          onClick={() => setShowModal(true)}
-          src={info.poster_path}
-          alt='card'
-        />
+        <div className='image-container d-flex justify-content-start m-3'>
+          <img
+            onClick={() => setShowModal(true)}
+            src={info.poster_path}
+            alt='card'
+          />
+          <div onClick={() => props.handleFavoriteClick(info)} className='overlay d-flex align-items-center justify-content-center'>
+            <FavoriteComponent />
+          </div>
+
+        </div>
+
       </SwiperSlide>
     </>
   );

@@ -10,7 +10,7 @@ import YouTube from "react-youtube";
 import Modal from "../Modal/Modal";
 import { Button } from "react-bootstrap";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [cardList, setCardList] = useState([]);
@@ -72,6 +72,8 @@ const Dashboard = () => {
             key={index}
             data={list.data.results}
             category={list.data.category}
+            handleFavoriteClick={props.handleFavoriteClick} 
+            favoriteComponent={props.favoriteComponent}
           />
         ))}
       </div>
