@@ -43,7 +43,7 @@ const Dashboard = (props) => {
 
   if (loading) {
     return (
-      <div class='loader'>
+      <div className='loader'>
         <Loader
           type='BallTriangle'
           color='#00BFFF'
