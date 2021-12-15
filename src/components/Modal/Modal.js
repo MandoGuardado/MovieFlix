@@ -33,8 +33,8 @@ const CardModal = (props) => {
         <div>
           <ul>
             Genres:
-            {data.genres.map((genre) => (
-              <li>{genre.name}</li>
+            {data.genres.map((genre, index) => (
+              <li key={index}>{genre.name}</li>
             ))}
           </ul>
         </div>
